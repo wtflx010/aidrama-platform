@@ -1,0 +1,26 @@
+{
+  "id": "task_X1mRKvdVEy2YE27EgG2uKibSahnegS20",
+  "video_id": "task_X1mRKvdVEy2YE27EgG2uKibSahnegS20",
+  "task_id": "task_X1mRKvdVEy2YE27EgG2uKibSahnegS20",
+  "object": "video",
+  "model": "agnes-video-v2.0",
+  "status": "completed",
+  "progress": 100,
+  "created_at": 1785732246,
+  "completed_at": 1785732318,
+  "seconds": "1.7",
+  "size": "1280x704",
+  "metadata": {
+    "size_mapping": {
+      "adjusted": true,
+      "height": 704,
+      "message": "Input size 1280x720 was mapped to nearest preset 720p/16:9 (1280x704)",
+      "ratio": "16:9",
+      "requested_height": 720,
+      "requested_width": 1280,
+      "resolution": "720p",
+      "width": 1280
+    },
+    "url": "https://platform-outputs.agnes-ai.space/videos/agnes-video-v2.0/task_X1mRKvdVEy2YE27EgG2uKibSahnegS20.mp4"
+  }
+}

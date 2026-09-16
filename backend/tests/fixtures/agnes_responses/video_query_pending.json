@@ -1,0 +1,10 @@
+{
+  "id": "task_X1mRKvdVEy2YE27EgG2uKibSahnegS20",
+  "video_id": "task_X1mRKvdVEy2YE27EgG2uKibSahnegS20",
+  "task_id": "task_X1mRKvdVEy2YE27EgG2uKibSahnegS20",
+  "object": "video",
+  "model": "agnes-video-v2.0",
+  "status": "in_progress",
+  "progress": 30,
+  "created_at": 1785732246
+}

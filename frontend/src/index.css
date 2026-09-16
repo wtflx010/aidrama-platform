@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: rgb(226 232 240);
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.06), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(217, 70, 239, 0.03), transparent);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  /* 滚动条 */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+
+  /* 表单元素 */
+  input,
+  textarea,
+  select {
+    @apply bg-white text-slate-900;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-slate-400;
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    @apply outline-none ring-2 ring-brand-500/30 border-brand-500;
+  }
+
+  /* select 下拉箭头 */
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 12px;
+    padding-right: 2rem;
+  }
+  select option {
+    @apply bg-white text-slate-900;
+  }
+}
+
+@layer components {
+  /* 玻璃面板 */
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-slate-200/80;
+  }
+
+  .glass-strong {
+    @apply bg-white/90 backdrop-blur-xl border border-slate-200;
+  }
+
+  /* 表面卡片 */
+  .surface {
+    @apply bg-white border border-slate-200 rounded-xl;
+  }
+
+  .surface-hover {
+    @apply transition-all duration-200 hover:border-brand-300 hover:shadow-card-hover;
+  }
+
+  /* 渐变文字 */
+  .text-gradient {
+    @apply bg-gradient-brand bg-clip-text text-transparent;
+  }
+
+  /* 输入框基础样式 */
+  .input-base {
+    @apply w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 transition-colors;
+  }
+  .input-base:focus {
+    @apply outline-none ring-2 ring-brand-500/30 border-brand-500;
+  }
+
+  /* range 滑条（时长控制等）：保留原生外观，仅去掉选中/聚焦时四周的选中框 */
+  input[type='range'] {
+    outline: none;
+  }
+  input[type='range']:focus,
+  input[type='range']:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  /* 骨架屏 */
+  .skeleton {
+    @apply bg-gradient-to-r from-slate-100 via-slate-200 to-slate-100 bg-[length:1000px_100%] animate-shimmer rounded;
+  }
+
+  /* 网格背景纹理 */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* ── 对话内容 Markdown 渲染（对齐 Trae Work 格式，2026-08-11）──
+     由 MarkdownRenderer 输出，Tailwind 无法扫描 dangerouslySetInnerHTML
+     内的类名，故用纯 CSS 统一定义样式 */
+  .md-body {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgb(30 41 59); /* slate-800 */
+    word-break: break-word;
+  }
+  .md-body > :first-child { margin-top: 0 !important; }
+  .md-body > :last-child { margin-bottom: 0 !important; }
+
+  .md-body p { margin: 0.5em 0; }
+  .md-body h1, .md-body h2, .md-body h3,
+  .md-body h4, .md-body h5, .md-body h6 {
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 1.1em 0 0.45em;
+    color: rgb(15 23 42); /* slate-900 */
+  }
+  .md-body h1 { font-size: 1.35em; }
+  .md-body h2 { font-size: 1.22em; padding-bottom: 0.2em; border-bottom: 1px solid rgb(241 245 249); }
+  .md-body h3 { font-size: 1.1em; }
+  .md-body h4 { font-size: 1.02em; }
+  .md-body h5, .md-body h6 { font-size: 0.95em; }
+
+  .md-body ul, .md-body ol { margin: 0.5em 0; padding-left: 1.5em; }
+  .md-body ul { list-style: disc; }
+  .md-body ol { list-style: decimal; }
+  .md-body li { margin: 0.28em 0; }
+  .md-body li > p { margin: 0; }
+  .md-body li::marker { color: rgb(148 163 184); }
+
+  /* 任务清单（- [ ]）勾选框样式 */
+  .md-body input[type='checkbox'] {
+    accent-color: #7c3aed;
+    width: 14px;
+    height: 14px;
+    margin-right: 0.35em;
+    vertical-align: -2px;
+    cursor: default;
+  }
+
+  .md-body a {
+    color: #7c3aed; /* brand-600 */
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .md-body a:hover { color: #6d28d9; }
+
+  .md-body strong { font-weight: 600; color: rgb(15 23 42); }
+  .md-body em { font-style: italic; }
+
+  .md-body code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', ui-monospace, monospace;
+    font-size: 0.86em;
+    background: rgb(241 245 249); /* slate-100 */
+    color: rgb(190 24 93); /* rose-600 */
+    padding: 0.12em 0.38em;
+    border-radius: 0.375rem;
+  }
+  .md-body pre {
+    background: #0f172a; /* slate-900 */
+    color: rgb(226 232 240); /* slate-200 */
+    padding: 0.85rem 1rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 0.7em 0;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  .md-body pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+    border-radius: 0;
+  }
+
+  .md-body blockquote {
+    margin: 0.6em 0;
+    padding: 0.35em 0.9em;
+    border-left: 3px solid #a78bfa; /* brand-400 */
+    background: rgb(245 243 255); /* brand-50 */
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: rgb(71 85 105); /* slate-600 */
+  }
+  .md-body blockquote > :first-child { margin-top: 0; }
+  .md-body blockquote > :last-child { margin-bottom: 0; }
+
+  .md-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.7em 0;
+    font-size: 12.5px;
+  }
+  .md-body th, .md-body td {
+    border: 1px solid rgb(226 232 240); /* slate-200 */
+    padding: 0.42em 0.7em;
+    text-align: left;
+  }
+  .md-body th {
+    background: rgb(248 250 252); /* slate-50 */
+    font-weight: 600;
+    color: rgb(51 65 85); /* slate-700 */
+  }
+  .md-body tr:nth-child(even) td { background: rgb(250 250 252); }
+
+  .md-body hr {
+    border: none;
+    border-top: 1px solid rgb(226 232 240);
+    margin: 1em 0;
+  }
+
+  .md-body img {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    margin: 0.5em 0;
+  }
+
+  /* 流式输出时的打字光标 */
+  .md-caret {
+    display: inline-block;
+    width: 7px;
+    height: 15px;
+    background: #8b5cf6;
+    border-radius: 1px;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: caretBlink 1s steps(2, start) infinite;
+  }
+  @keyframes caretBlink {
+    to { visibility: hidden; }
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

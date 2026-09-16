@@ -1,0 +1,41 @@
+[project]
+name = "pavo-backend"
+version = "0.1.0"
+description = "AI 短剧制作平台后端"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "sqlalchemy>=2.0",
+    "alembic>=1.14",
+    "psycopg[binary]>=3.2",
+    "celery>=5.4",
+    "redis>=5.2",
+    "httpx>=0.28",
+    "jsonpath-ng>=1.6",
+    "pydantic-settings>=2.6",
+    "python-multipart>=0.0.12",
+    "Pillow>=10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "respx>=0.21",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+# 2026-08-14 修复：scripts/ 下大量实验脚本（*_test.py / test_*.py）在模块级
+# 执行真实副作用（LLM/DB/ComfyUI 网络调用），会被 pytest 默认递归收集并永久
+# 挂起。限定只收集 tests/，并从递归目录排除 scripts/ 与虚拟环境。
+testpaths = ["tests"]
+norecursedirs = ["scripts", "venv", ".venv", "site-packages", "__pycache__"]

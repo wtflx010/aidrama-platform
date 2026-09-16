@@ -1,0 +1,71 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.venv/
+
+# ===== 环境变量 =====
+.env
+.env.local
+
+# ===== 数据 =====
+backend/data/
+data/
+*.db
+*.db-journal
+
+# ===== 前端 =====
+node_modules/
+frontend/dist/
+frontend/build/
+.next/
+
+# ===== 构建产物（tsc -b 生成）=====
+*.tsbuildinfo
+
+# ===== 测试缓存 =====
+.pytest_cache/
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# ===== 模型缓存（如本地下载）=====
+
+# ===== 运行时产物 =====
+*.log
+celerybeat-schedule.db
+celerybeat.pid
+
+# ===== DSH 残留工具（ai漫剧 不使用 dsh 独立工具，如再出现即为残留）=====
+dsh-*/
+
+# ===== 工具链 / 包缓存 / 产物（不入库）=====
+.toolchain/
+.pnpm-store/
+.evidence/
+out/
+deliverables/
+
+# ===== 嵌套的独立 git 仓库（dashboard/ 有自己的 GitHub 远程）=====
+
+# ===== 一次性调试脚本（保留在本地，不入库）=====
+backend/_*.py
+backend/_segment_plan.json
+
+# ===== 数据库备份（可能含敏感数据，不入库）=====
+backend/scripts/_backup/
+
+# ===== 一次性 A/B / e2e / 字段规整实验脚本（留本地，不入库）=====
+backend/scripts/ab_*.py
+backend/scripts/_e2e_driver.py
+backend/scripts/normalize_segment_gen_params.py
+# ===== AGENTS 指令文件按需入不入库，保留原样 =====
+
+# 个人关键词/脱敏映射（含个人隐私，不随仓库公开）
+.privacy-blocklist
+.scrubmap
+.privacy-allow

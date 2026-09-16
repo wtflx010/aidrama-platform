@@ -1,0 +1,12 @@
+{
+  "id": "task_FAILEDfake00000000000000000000",
+  "video_id": "task_FAILEDfake00000000000000000000",
+  "task_id": "task_FAILEDfake00000000000000000000",
+  "object": "video",
+  "model": "agnes-video-v2.0",
+  "status": "failed",
+  "progress": 0,
+  "created_at": 1785732246,
+  "error": "content policy violation: inappropriate content detected",
+  "code": "content_filter"
+}
